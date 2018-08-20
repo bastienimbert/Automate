@@ -5,18 +5,18 @@ Created on Fri Jun 15 20:10:04 2018
 @author: Bastien
 """
 
-## Dï¿½finitions initiales
+## Définitions initiales
 
 """
-On va dï¿½finir les coordonnï¿½es des points tels que :
+On va définir les coordonnées des points tels que :
 - ce soit des tuples
 - leur valeur dans map nous indique si c'est un mur ou non
     . -> rien
     # -> mur
-    E -> dï¿½part
-    A#i -> article nï¿½i
-    S -> arrivï¿½e
-    o -> dï¿½jï¿½ passï¿½
+    E -> départ
+    A#i -> article n#i
+    S -> arrivée
+    o -> déjà passé
 """
 import numpy as np
 
@@ -30,17 +30,17 @@ map = {}
 #on utilise un dictionnaire pour affecter des valeurs aux emplacements
 
 
-### Calcul de distance : dï¿½finition de notre heuristique
+### Calcul de distance : définition de notre heuristique
 
 def dist(coordA,coordB):
     return ((coordA[0] - coordB[0])**2 + (coordA[1] - coordB[1])**2)**(1/2)
 
-#C'est ï¿½a que l'on comptabilisera comme heuristique dans notre cas (distance la plus courte possible)
+#C'est ça que l'on comptabilisera comme heuristique dans notre cas (distance la plus courte possible)
 
-### Dï¿½finition de la carte
+### Définition de la carte
 class Point:
     "x, y, cout, heuristique, mur (Booleen), txt"
-    #(Cout infini pour que seul les points dï¿½finis puissent ï¿½tre pris en compte lors de la rï¿½solution)
+    #(Cout infini pour que seul les points définis puissent être pris en compte lors de la résolution)
     def __init__(self, x=0, y=0, c=np.Infinity, h=0, w=False, txt = " "):
         self.x = x
         self.y = y
@@ -67,7 +67,7 @@ def affiche(map):
 sortie=Point(4,49)
 
 
-#On commence avec une grille sans mur ni lieu visitï¿½
+#On commence avec une grille sans mur ni lieu visités
 for i in range(l):
     for j in range(h):
         map[(i, j)] = Point(i, j, np.Infinity, dist([i,j],[sortie.x,sortie.y]))
